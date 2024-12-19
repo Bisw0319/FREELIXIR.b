@@ -1,3 +1,7 @@
+window.onload = function() {
+    alert("For a better experience, use desktop mode.");
+};
+
 let searchBtn = document.querySelector('.searchBtn');
 let closeBtn = document.querySelector('.closeBtn');
 let searchBox = document.querySelector('.searchBox');
