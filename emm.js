@@ -1,7 +1,7 @@
 window.onload = function() {
     // Check if the alert has been shown before
     if (!localStorage.getItem('alertShown')) {
-        alert("To better experience, use dostake mode");
+        alert("To better experience, use DESKTOP mode");
         localStorage.setItem('alertShown', 'true');
     }
 };
