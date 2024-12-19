@@ -1,5 +1,9 @@
 window.onload = function() {
-    alert("For a better experience, use desktop mode.");
+    // Check if the alert has been shown before
+    if (!localStorage.getItem('alertShown')) {
+        alert("To better experience, use dostake mode");
+        localStorage.setItem('alertShown', 'true');
+    }
 };
 
 let searchBtn = document.querySelector('.searchBtn');
