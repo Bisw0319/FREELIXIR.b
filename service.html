@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>My Service</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+body{
+    background-color: #c0d4f2;
+}
+
+.theme-text {
+  color: #2528ef;
+}
+
+.card-img-top {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+.card {
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.card:hover {
+  color: rgb(255, 255, 255);
+}
+.card::before {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0%;
+  background: #474af0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  z-index: -1;
+}
+.card:hover::before {
+  left: 0%;
+  color: rgb(255, 255, 255);
+}
+.container-fluid {
+  background-image: url("blob-scene-haikei.svg");
+  background-position: center;
+  background-size: cover;
+}
+@media (max-width: 576px) {
+        h1 {
+            font-size: 2rem; 
+        }
+
+        .card-body p {
+            font-size: 0.9rem; 
+        }
+        .card{
+            margin-bottom: 20px;
+        }
+    }    
+.logo1 {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 120px; 
+  max-width: 150px; 
+  height: auto; 
+  position: absolute;
+}
+</style>
+<body>
+    <a href="index.html"><img src="https://i.ibb.co/HB7RQQ3/myLogo.png" alt="logo" class="logo1" /></a>
+    <div class="container-fluid">
+        <h1 class="text-center mt-5 display-3 fw-bold">My <span class="theme-text">Services</span></h1>
+        <hr class="mx-auto mb-5 w-25">
+        <div class="row mb-5">
+            <div class="col-12 col-sm-6 col-md-3 m-auto">
+                <div class="card shadow">
+                    <img src="https://i.ibb.co/tLz1692/Screenshot-2024-11-18-224520.png" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="text-center">Web Development</h3>
+                        <hr class="mx-auto w-75">
+                        <p>
+                            "As a successful web developer I create user-friendly websites that meet your needs. Be it a blog, business site or online store. I use the latest technology to ensure your site is fast, secure, and mobile-friendly..” .And the best part is that my services are completely free, because I believe everyone deserves access to Develop quality websites".
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 m-auto">
+              
+                <div class="card shadow">
+                    <img src="https://i.ibb.co/pKXGZXw/Screenshot-2024-11-18-224720.png" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="text-center">App Development</h3>
+                        <hr class="mx-auto w-75">
+                        <p>
+                            Right now, I'm learning how to make apps. I can't wait to build mobile apps for Android and iOS. I'm still working on getting better, but I want to offer free app development help. This way, I can turn your ideas into real apps. Let's team up on your project, and I'll create something great without charging you!                 
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 m-auto">
+                <div class="card shadow">
+                    <img src="https://i.ibb.co/gD4Mdn7/Screenshot-2024-11-18-224854.png" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="text-center">Digital Marketing</h3>
+                        <hr class="mx-auto w-75">
+                        <p>
+                            “Digital marketing is key to growing your brand online. I offer free services in SEO, social media marketing. Content creation and more to help businesses engage with their audience to increase their visibility online. I help you develop a customized digital strategy that leads Real results with no upfront costs" It happens.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-3 m-auto">
+                <div class="card shadow">
+                    <img src="https://i.ibb.co/vhr2vxV/Screenshot-2024-11-18-225055.png" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="text-center">Email Marketing</h3>
+                        <hr class="mx-auto w-75">
+                        <p>
+                            “Effective email marketing can help you build lasting relationships with your customers. I offer free email marketing services. Including creating eye-catching email templates. Automated campaign settings Targeting your emails to the right audience…"Let's work together to create impactful email and marketing campaigns that drive conversions to make sure they get going."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

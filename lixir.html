@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container5 {
+            width: 100%;
+            height: 100vh;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow-y: auto; /* Enables vertical scrolling */
+            scroll-behavior: smooth; /* Smooth scrolling effect */
+        }
+        .container5::-webkit-scrollbar {
+            width: 8px; /* Width of the scrollbar */
+        }
+
+        .container5::-webkit-scrollbar-thumb {
+            background: #ff6347; /* Color of the scrollbar thumb */
+            border-radius: 4px;
+        }
+
+        .container5::-webkit-scrollbar-thumb:hover {
+            background: #ff4500; /* Color when hovering */
+        }
+
+        .container5::-webkit-scrollbar-track {
+            background: #333; /* Scrollbar track background */
+        }
+
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #333;
+            width: 100%;
+        }
+
+        .header .logo img {
+            height:  70px;
+            width: auto;
+            border-radius: 0 5px 5px 5px;
+        }
+        .header .search-bar{
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .header .search-bar input {
+    padding: 10px; /* Increased padding for a larger input field */
+    font-size: 16px; /* Increased font size */
+    width: 200px; /* Adjusted width */
+    border: 2px solid #ff6347; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #333; /* Background color */
+    color: #ffffff; /* Text color */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.header .search-bar input:focus {
+    border-color: #ff4500; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.header .search-bar button {
+    padding: 10px 15px; /* Increased padding */
+    background-color: #ff6347; /* Button background color */
+    border: none; /* Remove default border */
+    color: white; /* Text color */
+    font-size: 16px; /* Increased font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.header .search-bar button:hover {
+    background-color: #ff4500; /* Change background color on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+.header .search-bar button:active {
+    background-color: #c7442e; /* Darker color when button is pressed */
+    transform: scale(1); /* Reset size */
+}
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px auto;
+        }
+
+        .category-buttons button {
+            padding: 8px 15px;
+            font-size: 14px;
+            background-color: #494949;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .category-buttons button:hover {
+            background-color:  #ff6347;
+        }
+
+        .main-content {
+            padding: 10px;
+            width: 100%;
+        }
+
+        .main-content h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 50px;
+            justify-items: center;
+            
+        }
+
+        .movie-item {
+            width: 250px;
+            max-width: 250px;
+            height: auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background-color: #222;
+            padding: 10px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .movie-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .movie-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .movie-item h3 {
+            color: white;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .movie-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .movie-modal .modal-content {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            max-height: 100%;
+            overflow-y: auto;
+            color: white;
+            position: relative;
+        }
+
+        .movie-modal .close-btn {
+            font-size: 30px;
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .movie-modal img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .movie-modal p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .movie-modal .rating {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #f3e634;
+        }
+
+        #downloadBtn {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: white;
+            background-color: #ff6347;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(255, 99, 71, 0.3);
+        }
+
+        #downloadBtn:hover {
+            background-color: #ff4500;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(255, 69, 0, 0.4);
+        }
+
+        #downloadBtn:active {
+            background-color: #c7442e;
+            transform: scale(1);
+        }
+        .movie-modal .modal-content::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.movie-modal .modal-content::-webkit-scrollbar-thumb {
+    background: #ff6347; /* Color of the scrollbar thumb */
+    border-radius: 4px;
+}
+
+.movie-modal .modal-content::-webkit-scrollbar-thumb:hover {
+    background: #ff4500; /* Color when hovering */
+}
+
+.movie-modal .modal-content::-webkit-scrollbar-track {
+    background: #333; /* Scrollbar track background */
+}
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+    }
+
+    .logo-container {
+        margin-bottom: 10px; /* Space between logo and search bar */
+    }
+
+    .header .search-bar {
+        flex-direction: row; /* Keep input and button in a row */
+        justify-content: center; /* Center align input and button */
+        width: 100%; /* Full width for search bar */
+        max-width: 300px; /* Limit max width for larger screens */
+    }
+
+    .header .search-bar input {
+        width: 70%; /* Adjust width of input */
+    }
+
+    .header .search-bar button {
+        margin-left: 5px; /* Space between input and button */
+    }
+}
+</style>
+<body>
+    <div class="container5">
+        <div class="header">
+            <div class="logo">
+                <img src="https://i.ibb.co/LtxDCqs/output-onlinetools-1.png" alt="MovieStream Log">
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for movies...">
+                <button onclick="searchMovie()">Search</button>
+            </div>
+        </div>
+
+        <div class="category-buttons">
+            <button onclick="loadMovies('mcu')">MCU & DC</button>
+            <button onclick="loadMovies('hollywood')">HOLLYWOOD</button>
+            <button onclick="loadMovies('k-drama')">KOREAN DRAMAS</button>
+            <button onclick="loadMovies('anime')">ANIME</button>
+            <button onclick="loadMovies('bollywood')">BOLLYWOOD</button>
+        </div>
+
+        <div class="main-content">
+            <h2 id="categoryTitle">All Movies</h2>
+            <div class="movie-grid" id="movieGrid"></div>
+        </div>
+
+        <div class="movie-modal" id="movieModal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h2 id="movieTitle"></h2>
+                <img id="moviePoster" src="" alt="Movie Poster">
+                <p id="movieDescription"></p>
+                <div class="rating" id="movieRating"></div>
+                <a id="downloadBtn" class="button" href="#" target="_blank">Download</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const movies = [
+            { id: 0, title: 'Pushpa 2: The Rule', poster: 'https://th.bing.com/th/id/OIP.EZYwaaB1HzMm7IY8ESO5PAAAAA?w=474&h=734&rs=1&pid=ImgDetMain', description: 'Pushpa The Rule Part 2 (2024) Hindi Dubbed 1080p V2 CAMRip [BollyFlix].mkv, size: 4.27GB', rating: '?.?', link: 'https://new6.gdflix.cfd/file/TyGDti3CBa', category: 'bollywood' },
+            { id: 1, title: 'Venom: The Last Dance', poster: 'https://cdn.kinocheck.com/i/tuaajk5pq8.jpg', description: 'Venom The Last Dance (2024) {Hindi-English} 1080p WEB-DL ESub [BollyFlix].mkv, Size : 2.29GB', rating: '8.8', link: 'https://new6.gdflix.cfd/file/7bo3gUJNAF', category: 'hollywood' },
+            { id: 2, title: 'Bhool Bhulaiyaa 3', poster: 'https://upload.wikimedia.org/wikipedia/en/e/e4/Bhool_Bhulaiyaa_3_poster.jpg', description: ' Bhool Bhulaiyaa 3 (2024) Hindi 1080p HDRip [BollyFlix].mkv, Size : 3.64GB', rating: '?.?', link: 'https://new6.gdflix.cfd/file/zNLUeCxY9R', category: 'bollywood' },
+            { id: 3, title: 'Iron Man 3', poster: 'https://image.tmdb.org/t/p/original/3OkXrXYsXELnqCqGhgYHvDXTc3v.jpg', description: ' Iron Man 3 (2013) {Hindi-English} 1080p BluRay ESub [BollyFlix].mkv, Size : 4.37GB', rating: '7.1', link: 'https://new6.gdflix.cfd/file/gD6V2QJDeExpJLUtaTfp', category: 'mcu' },
+            { id: 4, title: 'Lucky Baskhar', poster: 'https://th.bing.com/th/id/OIP.4L9LYfgfS4txFhlzBW0PmAHaLk?rs=1&pid=ImgDetMain', description: 'Lucky Baskhar (2024) {Hindi-Telugu} 1080p WEB-DL ESub [BollyFlix].mkv, Size : 2.7GB', rating: '8.1', link: 'https://new6.gdflix.cfd/file/fGEcxK4tXb', category: 'bollywood' },
+            { id: 5, title: 'Solo Leveling', poster: 'https://th.bing.com/th/id/OIP.E5sL06EpXCVccNcyX79DiQHaKo?rs=1&pid=ImgDetMain', description: 'Solo Leveling Season 1 {Hindi-English-Japanese} 1080p WEB-DL ESub [BollyFlix].zip, Size : 5.74GB', rating: '8.6', link: 'https://new6.gdflix.cfd/file/rAnFvtVG9a', category: 'anime' },
+            { id: 6, title: 'Thukra Ke Mera Pyaar (Season:1)', poster: 'https://imgs.search.brave.com/0ZN41wI1sIUaxomqwqmI9r8SpMUvwnw_JrVzfGgkzmg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/anVzdHdhdGNoLmNv/bS9pbWFnZXMvcG9z/dGVyLzMyMjQ5NTc4/Mi9zMzMyL3RodWty/YS1rZS1tZXJhLXB5/YWFy', description: ' Thukra Ke Mera Pyaar S01 Hindi 1080p WEB-DL ESub [BollyFlix].zip, Size : 13.52GB', rating: '6.8', link: 'https://new6.gdflix.cfd/file/9BOz63yABV', category: 'bollywood' },
+            { id: 7, title: 'Vicky Vidya ka Woh Wala Video', poster: 'https://image.tmdb.org/t/p/original/77gbFuFUfXx3OWv6pGhOAfHMBpg.jpg', description: ' Vicky Vidya ka Woh Wala Video (2024) Hindi 1080p WEB-DL ESub [BollyFlix].mkv, Size : 2.73GB', rating: '6.9', link: 'https://new6.gdflix.cfd/file/Yb3wsEw0ra', category: 'bollywood' },
+            { id: 8, title: 'Devara', poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202306/Devara_1687223267.jpg', description: ' Devara (2024) {Hindi-English-Tamil-Telugu-Malayalam-Kannada} 1080p WEB-DL ESub [BollyFlix].mkv, Size : 4.47GB', rating: '7.1', link: 'https://new6.gdflix.cfd/file/JXw6zY1P3j', category: 'bollywood' },
+            { id: 9, title: 'Iron Man 2', poster: 'https://image.tmdb.org/t/p/original/h8CPzLN7xxa9NUYUkBDz9pmQwWC.jpg', description: 'Iron Man 2 (2010) {Hindi-English} 1080p BluRay ESub [BollyFlix].mkv, Size : 4.27GB', rating: '6.9', link: 'https://new6.gdflix.cfd/file/5ArJvJvRGOHSkCWZ9g43', category: 'mcu' },
+            { id: 10, title: 'Iron Man', poster: 'https://th.bing.com/th/id/OIP.EaySpNZuFRqj3znF4XfA1gHaK-?rs=1&pid=ImgDetMain', description: 'Iron Man (2008) {Hindi-English} 1080p BluRay ESub [BollyFlix].mkv, Size : 4.11GB', rating: '7.9', link: 'https://new6.gdflix.cfd/file/KIhdKgJYKeT0PF78FoRy', category: 'mcu' },
+            { id: 11, title: 'Now You See Me (2013)', poster: 'https://th.bing.com/th/id/OIP.dhXg6CTse-v_ICZtTpykcAHaKf?w=1536&h=2175&rs=1&pid=ImgDetMain', description: 'Now You See Me (2013) EXTENDED {Hindi-English} 1080p BluRay ESub [BollyFlix].mkv, Size : 2.6GB', rating: '7.2', link: 'https://new6.gdflix.cfd/file/iyZzD8cSS4', category: 'hollywood' },
+            { id: 12, title: 'Taaza Khabar S02', poster: 'https://m.media-amazon.com/images/M/MV5BZDA4MzEzODUtMDE2My00ZjQwLTg1YjUtZGM4ZjAwNzZjMWYxXkEyXkFqcGdeQXVyNjQ2MjQ4MzQ@._V1_FMjpg_UX1000_.jpg', description: 'Taaza Khabar S02 Hindi 720p WEB-DL ESub [BollyFlix].zip, Size : 3.19GB', rating: '?.?', link: 'https://new6.gdflix.cfd/file/v3bLXtXDiN', category: 'bollywood' },
+            { id: 13, title: 'The Wrong Way To Use Healing Magic', poster: 'https://m.media-amazon.com/images/M/MV5BMDEzZDU2ZTgtZTIxMS00NTg4LWE4OTAtYWUxMzQzODkyNjMwXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg', description: 'The Wrong Way To Use Healing Magic Season 1 {Hindi-English-Japanese} 1080p WEB-DL ESub [BollyFlix].zip, Size : 6.65GB', rating: '6.9', link: 'https://new6.gdflix.cfd/file/12EuOfpQEb', category: 'anime' },
+            { id: 15, title: 'My Fault', poster: 'https://cdn.epicstream.com/images/ncavvykf/epicstream/0a96efa26cf74ddaea247b4a3b242582bf7e64fa-500x750.png?rect=0,0,499,750&w=466&h=700&auto=format', description: 'My Fault (2023) Multi Audio {Hindi-English-Spanish} 1080p WEB-DL MSubs [BollyFlix].mkv, Size : 2.69GB', rating: '6.1', link: 'https://new6.gdflix.cfd/file/5hXhWYdOZf6aWBv8fbN1', category: 'hollywood' },
+            { id: 16, title: 'Jujutsu Kaisen S01', poster: 'https://image.tmdb.org/t/p/original/lKdXBt4sbpkwnr8quMonHt8lA61.jpg', description: 'Jujutsu Kaisen Season 1 {Hindi-English-Japanese} 1080p WEB-DL ESub [BollyFlix].zip, Size : 11.72GB', rating: '8.5', link: 'https://new6.gdflix.cfd/file/Nl5p1U4hruc3G0YIMTs6', category: 'anime' },
+            { id: 17, title: 'Deadpool And Wolverine (2024)', poster: 'https://th.bing.com/th/id/OIP.3nyrIbNMWK5nULPa20cCbAHaLH?w=540&h=810&rs=1&pid=ImgDetMain', description: 'Deadpool And Wolverine (2024) {Hindi-English} 1080p (10bit) HQ BluRay ESub [BollyFlix].mkv, Size : 7.79GB', rating: '8.3', link: 'https://new6.gdflix.cfd/file/nrEaf6d263', category: 'mcu' },
+            { id: 18, title: 'Siddharth Roy', poster: 'https://th.bing.com/th/id/OIP.biCG41U1Gr8I5nBIsOCIswHaKX?rs=1&pid=ImgDetMain', description: ' Siddharth Roy (2024) {Hindi (HQ)-Telugu} 1080p WEB-DL ESub [BollyFlix].mkv, Size : 2.86GB', rating: '7.0', link: 'https://new6.gdflix.cfd/file/iJLGtOoU8D', category: 'bollywood' },
+            { id: 19, title: 'Stree 2', poster: 'https://image.tmdb.org/t/p/original/zgxpT5Q5pe3FtL99F0UOIglPGrQ.jpg', description: 'Stree 2 Sarkate Ka Aatank (2024) Hindi 1080p WEB-DL ESub [BollyFlix].mkv, Size : 2.76GB', rating: '?.?', link: 'https://new6.gdflix.cfd/file/wpJxP7fsUH', category: 'bollywood' },
+            { id: 20, title: 'Fifty Shades Of Grey', poster: 'https://th.bing.com/th/id/OIP.FAvVkd5iGcon_pDFWZ3PVAHaKf?w=533&h=755&rs=1&pid=ImgDetMain', description: 'Fifty Shades Of Grey (2015) {Hindi-English} 1080p (10bit) BluRay ESub [BollyFlix].mkv, Size : 1.91GB', rating: '4.2', link: 'https://new6.gdflix.cfd/file/R5Hk8g8oKC', category: 'hollywood' },
+            { id: 21, title: 'Doctor Strange in the Multiverse of Madness', poster: 'https://mlpnk72yciwc.i.optimole.com/cqhiHLc.WqA8~2eefa/w:auto/h:auto/q:75/https://bleedingcool.com/wp-content/uploads/2022/04/FPn5XwMVgAE8v2x.jpeg', description: ' Doctor Strange in the Multiverse of Madness (2022) Dual Audio {Hindi-English} IMAX 1080p WEB-DL ESub [BollyFlix].mkv, Size : 2.85GB', rating: '7.8', link: 'https://new6.gdflix.cfd/file/QbXyhqnaupM5G89KNCap', category: 'mcu' },
+            { id: 22, title: 'Dragon Ball S01 ', poster: 'https://image.tmdb.org/t/p/original/y1OdtgB2HhZqPwzcAldXZy7dymB.jpg', description: 'Dragon Ball Season 1 {Hindi-English-Japanese-Tamil -Telugu-Malayalam-Kannada} 1080p DVDRip ESub [BollyFlix].zip, Size : 18.77GB', rating: '8.5', link: 'https://new6.gdflix.cfd/file/QDHSWQknG3', category: 'anime' },
+            { id: 23, title: 'True Beauty S01 ', poster: 'https://sm.ign.com/ign_in/screenshot/default/true-beauty_snwt.png', description: 'True Beauty S01 {Hindi-English-Korean} 1080p WEB-DL ESub [BollyFlix].zip, Size : 5GB', rating: '6.9', link: 'https://new6.gdflix.cfd/file/Pw8D656tnd', category: 'anime' },
+            { id: 24, title: 'Days with My Stepsister S01', poster: 'https://image.tmdb.org/t/p/original/81HdXCynJtZhgfHUz7XHmsf5j7Q.jpg', description: 'Days with My Stepsister S01 {Hindi-Japanese} 1080p WEB-DL ESub [BollyFlix].zip, Size : 5.59GB', rating: '7.5', link: 'https://new6.gdflix.cfd/file/0nGCuQ4J4f', category: 'anime' },
+            { id: 25, title: 'Jujutsu Kaisen S02', poster: 'https://th.bing.com/th/id/OIP.v7g13xref-VYhPhsSxHvDQHaLG?w=683&h=1024&rs=1&pid=ImgDetMain', description: 'Jujutsu Kaisen S02 {Hindi-English-Japanese} 1080p WEB-DL ESub [BollyFlix].zip, Size : 11.08GB', rating: '8.5', link: 'https://new6.gdflix.cfd/file/H3Y2Za9B3TW1wT7pqlgO', category: 'anime' },
+            { id: 26, title: 'One Punch Man S01', poster: 'https://picfiles.alphacoders.com/178/178909.jpg', description: ' One Punch Man Season 1 {Hindi(Urdu)-English-Japanese} 1080p WEB-DL ESub [BollyFlix].zip, Size : 6.76GB', rating: '8.7', link: 'https://new6.gdflix.cfd/file/IRQwjI9ek5', category: 'anime' },
+            { id: 27, title: 'Tower Of God S01', poster: 'https://m.media-amazon.com/images/M/MV5BZGM4NjE1OWYtNzcwMC00ZGY0LWE4NjEtZTgzYzY4YWU5M2E3XkEyXkFqcGdeQXVyMzI2Mjc1NjQ@._V1_FMjpg_UX1000_.jpg', description: 'Tower Of God Season 1 {Hindi-English-Japanese} 1080p WEB-DL ESub [BollyFlix].zip, Size : 6.3GB', rating: '7.6', link: 'https://new6.gdflix.cfd/file/h24c8jhzid', category: 'anime' },
+            { id: 28, title: 'Death Note S01', poster: 'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/02/death-note-franchise-poster.jpg', description: 'Death Note Season 1 {English-Japanese} 1080p (10bit) BluRay ESub [BollyFlix].zip, Size : 16.71GB', rating: '9.0', link: 'https://new6.gdflix.cfd/file/Tdf23a8dD7', category: 'anime' },
+            { id: 29, title: 'Spider-Man - Homecoming', poster: 'https://th.bing.com/th/id/OIP.BK3CD6ObQyOtavHwsZBTOAAAAA?w=474&h=711&rs=1&pid=ImgDetMain', description: 'Spider-Man - Homecoming (2017) Dual Audio {Hindi-English} 1080p BluRay 2.6GB ESub [BollYFlix].mkv, Size : 2.61GB', rating: '7.4', link: 'https://new6.gdflix.cfd/file/zmkB0pYWpK93E3m15JVp', category: 'mcu' },
+            { id: 30, title: 'Red One', poster: 'https://th.bing.com/th/id/R.7d89cb1f1c4f21cb645a05a6dbe6643d?rik=dnc4qow0HoAjwg&riu=http%3a%2f%2fwww.impawards.com%2f2024%2fposters%2fmed_red_one_ver2.jpg&ehk=D4QV%2bRiQgKixZU75HtxEAYuXiDd3NvQGlKlb67QXHZ8%3d&risl=&pid=ImgRaw&r=0', description: ' Red One (2024) {Hindi-English-Tamil-Telugu-Kannada-Malayalam} 1080p WEB-DL MSubs [BollyFlix].mkv, Size : 3.52GB', rating: '6.9', link: 'https://new6.gdflix.cfd/file/8pOj6JJqzo', category: 'hollywood' },
+            { id: 31, title: 'Daman', poster: 'https://th.bing.com/th/id/OIP.4rhDY0Odywgi9kamSPiEPgHaLH?rs=1&pid=ImgDetMain', description: 'Daman (2022) {Hindi (Clean)-Odia} 1080p WEB-DL ESub [BollyFlix].mkv, Size : 3.79GB', rating: '9.3', link: 'https://new6.gdflix.cfd/file/BQOKIHq3sA', category: 'bollywood' },
+            { id: 32, title: 'Avengers Endgame', poster: 'https://th.bing.com/th/id/OIP.cPFL_ymi5l8PAJWcKZk3GQAAAA?rs=1&pid=ImgDetMain', description: 'Avengers Endgame 2019 Dual Audio Hindi 1080p HEVC (10bit) BluRay [BollYFlix].mkv, ize : 3.05GB', rating: '8.4', link: 'https://new6.gdflix.cfd/file/rw5cH9N56oN5Md8aPXLL', category: 'mcu' },
+            { id: 33, title: 'Spider-Man No Way Home', poster: 'https://ahscougarcall.com/wp-content/uploads/2022/09/spidermannowayhome_onesheet_rating.jpg', description: ' Spider-Man No Way Home (2021) {Hindi-English} 1080p IMAX WEB-DL Sub [BollyFlix].mkv, Size : 3.12GB', rating: '9.2', link: 'https://new6.gdflix.cfd/file/3WGHNH8OJDGj0mrnbX2H', category: 'mcu' },
+            { id: 34, title: 'Blue Beetle ', poster: 'https://assets.mycast.io/posters/actors-who-should-play-young-rudy-reys-in-blue-beetle-prequel-fan-casting-poster-407936-medium.jpg?1702157052', description: 'Blue Beetle (2023) {Hindi-English} 1080p WEB-DL ESub [BollyFlix].mkv, Size : 2.69GB', rating: '7.0', link: 'https://new6.gdflix.cfd/file/f15deGix9TiQEeOT9dMe', category: 'mcu' },
+            { id: 35, title: 'The Flash (2023)', poster: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7229d393-c3b8-4703-a41e-e876546d2612/dfxtux3-784538bd-b454-435c-97b0-175518888953.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzcyMjlkMzkzLWMzYjgtNDcwMy1hNDFlLWU4NzY1NDZkMjYxMlwvZGZ4dHV4My03ODQ1MzhiZC1iNDU0LTQzNWMtOTdiMC0xNzU1MTg4ODg5NTMuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.NrNk4E1nvH6xj1JPycamWbaaTYlpSAnLLkGNpW62Ti0', description: 'The Flash (2023) {Hindi-English} 1080p WEB-DL ESub [BollyFlix].mkv, Size : 3.04GB', rating: '?.?', link: 'https://new6.gdflix.cfd/file/qM5cPMqqQse4So8TUX1F', category: 'mcu' },
+            { id: 36, title: 'Avengers Infinity War', poster: 'https://image.tmdb.org/t/p/original/pf8DZqVdlx69JX3803Ml0ag0sNk.jpg', description: 'Avengers Infinity War (2018) {Hindi-English} 1080p BluRay ESub [BollyFlix].mkv, Size : 3.52GB', rating: '8.4', link: 'https://new6.gdflix.cfd/file/BiBhnyErHY', category: 'mcu' },
+            { id: 37, title: 'My Girlfriend is an Alien S01', poster: 'https://th.bing.com/th/id/OIP.mt4O3DTCWRYWTRwHAIS43wHaLH?rs=1&pid=ImgDetMain', description: 'My Girlfriend is an Alien S01 Chinese 1080p WEB-DL ESub [BollyFlix].zip, Size : 18.53GB', rating: '8.4', link: 'https://new6.gdflix.cfd/file/uP1qjiucnD85jMputNEd', category: 'k-drama' },
+            { id: 38, title: 'Love Next Door S01', poster: 'https://asianwiki.com/images/7/7c/Love_Next_Door-p.jpg', description: ': Love Next Door Season 1 Korean 720p WEB-DL ESub [BollyFlix].zip, Size : 10.11GB', rating: '8.4', link: 'https://new6.gdflix.cfd/file/ZJXcFaJBKd', category: 'k-drama' },
+            { id: 39, title: 'Trillion Game s01', poster: 'https://image.tmdb.org/t/p/original/4raTP9bzjc5385GWoLJar3ko0Pk.jpg', description: 'Coming Soon....', rating: '?.?', link: 'https://youtu.be/YgPAhtRw5HM?si=UQKabedZ4Vy-i8pn', category: 'anime' },
+            { id: 40, title: 'W Two Worlds Apart S01', poster: 'https://th.bing.com/th/id/OIP.RZqaej3__cOI3jef1la1wgHaKY?w=690&h=968&rs=1&pid=ImgDetMain', description: ' W Two Worlds Apart S01E01 {Hindi-Korean} 1080p WEB-DL ESub [BollyFlix].mkv, Size : 1.17GB', rating: '8.1', link: 'https://new6.gdflix.cfd/file/1WIRlvq3FBc6cQF2QloN', category: 'k-drama' },
+            { id: 41, title: 'True Beauty S01', poster: 'https://heyroseanne.com/wp-content/uploads/2023/08/True-Beauty-Poster-Wallpaper-KDrama-Korean-.jpeg', description: 'True Beauty Season 1 Korean 1080p WEB-DL ESub [BollyFlix].zip, Size : 21.52GB', rating: '8.0', link: 'https://new6.gdflix.cfd/file/rx7qyoKsOoqYvLYhyfdj', category: 'k-drama' },
+            { id: 42, title: 'Queen of Tears S01', poster: 'https://image.tmdb.org/t/p/original/5ZtvJtJxZrdbQpPBG9ubkYmnwah.jpg', description: 'Queen of Tears S01 {Hindi-English-Korean} 720p WEB-DL ESub [BollyFlix].zip, Size : 13.63GB', rating: '8.5', link: 'https://new6.gdflix.cfd/file/2kM8zbX4Hp', category: 'k-drama' },
+
+
+
+        ];
+
+        function loadMovies(category) {
+let filteredMovies;
+    if (category === 'mcu') {
+        filteredMovies = movies.filter(movie => movie.category === 'mcu');
+        document.getElementById('categoryTitle').textContent = 'MCU & DC Movies';
+    } else if (category === 'k-drama') {
+        filteredMovies = movies.filter(movie => movie.category === 'k-drama');
+        document.getElementById('categoryTitle').textContent = 'KOREAN Drama & Series';
+    } else if (category === 'hollywood') {
+        // Load hollywood details (you can customize this)
+        filteredMovies = movies.filter(movie => movie.category === 'hollywood'); // or any specific logic
+        document.getElementById('categoryTitle').textContent = 'HOLLYWOOD Movies';
+    } else if (category === 'anime') {
+        // Load Anime details (you can customize this)
+        filteredMovies = movies.filter(movie => movie.category === 'anime'); // or any specific logic
+        document.getElementById('categoryTitle').textContent = 'ANIME Series & Movies';
+    }
+    else if (category === 'bollywood') {
+        // Load bollywood details (you can customize this)
+        filteredMovies = movies.filter(movie => movie.category === 'bollywood');
+        document.getElementById('categoryTitle').textContent = 'BOLLYWOOD Contents';
+    }
+    displayMovies(filteredMovies);
+}
+
+        function displayMovies(movieList) {
+            const movieGrid = document.getElementById('movieGrid');
+            movieGrid.innerHTML = '';
+            if (movieList.length === 0) {
+        movieGrid.innerHTML = `<p class="not-found">No movies found in this category.</p>`;
+    } else {
+            movieList.forEach(movie => {
+                const movieItem = document.createElement('div');
+                movieItem.classList.add('movie-item');
+                movieItem.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.title}">
+                    <h3>${movie.title}</h3>
+                `;
+                movieItem.addEventListener('click', () => showMovieDetails(movie));
+                movieGrid.appendChild(movieItem);
+            });
+        }
+    }    
+
+        function showMovieDetails(movie) {
+            document.getElementById('movieTitle').textContent = movie.title;
+            document.getElementById('moviePoster').src = movie.poster;
+            document.getElementById('movieDescription').textContent = movie.description;
+            document.getElementById('movieRating').textContent = `Rating: ${movie.rating}`;
+            document.getElementById('downloadBtn').href = movie.link;
+            document.getElementById('movieModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('movieModal').style.display = 'none';
+        }
+
+        function searchMovie() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(query));
+            displayMovies(filteredMovies);
+        }
+
+        displayMovies(movies);
+    </script>
+</body>
+</html>

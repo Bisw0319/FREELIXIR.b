@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    body{
+         background:#55e7fc;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    .header {
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    padding: 10px; 
+}
+
+.logo {
+    width: 150px;
+    max-width: 100%; 
+    height: auto; 
+}
+    .hero{
+        background-color: #fafad1;
+        overflow: hidden;
+        border-radius: 15px;
+        animation-name: colorChanger;
+        animation-duration: 2s;
+    }
+    .heading h1{
+        text-align: center;
+        font-size: 55px;
+        color: #f92d09;
+        margin-bottom: 35px;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin: 65px auto;
+    }
+    .hero-content{
+        float: 1;
+        width: 600px;
+        margin: 0px 25px;
+        animation: fadeInUp 2s ease;
+    }
+    .hero-content h2{
+        font-size: 38px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .hero-content p{
+        font-size: 24px;
+        line-height: 1.5;
+        margin-bottom: 40px;
+        color: rgb(16, 15, 15);
+    }
+    .hero-content button{
+        display: inline-block;
+        background-color: #a0d2eb;
+        color: black;
+        padding: 12px 24px;
+        border-radius: 5px;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3 ease;
+    }
+    .hero-content button:hover{
+        background:#13d5d8;
+        transform: scale(1.1);
+    }
+    .hero-img{
+        flex: 1;
+        width: 600px;
+        margin: auto;
+        animation: fadeIRight 2s ease;
+        display: block;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        filter: grayscale(100%);
+    }
+    img:hover{
+        filter: grayscale(0%);
+    }
+ .social-links a{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: black;
+  margin-right: 0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.5s ease; 
+  margin-top: 10px;
+  margin-left: 7px;
+}
+ .social-links a:hover{
+  color: #ffffff;
+  background-color: #5c9fcc;
+}
+    @media screen and (max-width: 768px){
+        .heading h1{
+            font-size: 45px; 
+            margin-top: 30px;
+        }
+        .hero{
+            margin: 0px;
+        }
+        .container{
+            width: 100%;
+            flex-direction: column;
+            margin: 0px;
+            padding: 0px 40px;
+        }
+        .hero-content{
+            width: 100%;
+            margin: 35px 0px;
+        }
+        .hero-content h2{
+            font-size: 30px;
+        }
+        .hero-content p{
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .hero-content button{
+            font-size: 16px;
+            padding: 8px 16px;
+        }
+        .hero-img{
+            width: 100%;
+        }
+    }
+    @media (max-width: 768px) {
+    .logo {
+        width: 30%; 
+    }
+}
+    @keyframes fadeInUp{
+        0%{
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100%{
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+    @keyframes fadeInRight{
+        0%{
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        100%{
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+    @keyframes colorChanger{
+        from{
+            background-color: rgb(101, 101, 244);;
+        }
+        to{
+            background-color: aquamarine;
+        }
+    }
+</style>
+<body>
+    <div class="header">
+        <a href="index.html"><img src="https://i.ibb.co/3fcLdQx/Screenshot-2024-10-28-145433-removebg-preview-2.png" alt="Logo" class="logo"></a>
+    </div>
+    <section class="hero">
+        <div class="heading">
+            <h1>About Me</h1>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h2>Welcome to Freelixir!</h2>
+                <p>Hello friends!,i'm <b>Biswajit Baral</b>, a web developer and designer, who specializes in visually lovely and user-friendly sites. With a strong foothold in both front-end and back-end technologies, I have come in here to bring ideas into the limelight and also support businesses in establishing their presence online. The fascination with how things work has been the foundation on which my journey into the digital world has unfolded into the job that I love."</p> <br>
+                    <p>I am a <b>Btech</b> graduate from <b>KMBB College Of Engineering & Technology</b>. I learned how to code and design through this degree. I have been fortunate enough to work with types of clients ranging from innovative startups to well-established brands through <b>Freelixir</b> in the last 1 year. Each one has taught me great lessons and fueled my desire to push boundaries about what could be possible in web design and development.</p>
+                <button class="cta-button">
+                    <details>
+                    <summary>Learn More</summary>
+                    <h3>Skills and Technologies</h3>
+                    <p>"At Freelixir, I work with HTML, CSS, and JavaScript, but I have special interest in modern frameworks such as React and Vue.js. I am also equipped with Adobe Creative Suite and Figma to ensure my user experiences are efficient and engaging. I continuously learn and evolve to ensure my skills remain sharp and adaptable to the latest technological advancements in this industry."</p>
+                    <h3>Design Philosophy</h3>
+                    <p>"My design philosophy at Freelixir is user experience-based. I think that sites should not only look good but be intuitive and accessible to all users. In each project, I try to see things through others' eyes: both my clients and their audience. What I want to bring forth is designs that look beautiful but are also functional and effective."</p>
+                    <p>"When I am not being pored over lines of code, you can find me hiking in the great outdoors or attempting some new recipe in the kitchen or immersed in a good book. I think creative energy lives when one is well-rounded, and I always draw something from my experiences and surroundings."</p>
+                    </details>
+                </button>
+            </div>
+            <div class="hero-img">
+                <img src="https://i.ibb.co/rtF2NY4/b-b-1.jpg"  alt="b-b-1">
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/biswajit-baral-abb842325/"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/zen__z__zero/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://github.com/Bisw0319"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://x.com/Biswa1120"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

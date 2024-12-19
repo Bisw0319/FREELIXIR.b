@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    :root{
+        --primaryColor: #ff901d;
+        --softColor: #fedddd;
+        --whiteColor: #f5f5f5;
+        --blackColor: #222;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        font-family: 'Poppins', sans-serif;
+    }
+    body{
+        width: 100%;
+        height: auto;
+        padding: 3%;
+        background-color: var(--softColor);
+    }
+    .header{
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://cdn.wallpapersafari.com/59/81/UkEQqb.jpg');
+        background-position: top center;
+        background-size: cover;
+        display: flex;
+        background-repeat: no-repeat;
+        flex-direction: column;
+        align-items: center;
+        padding: 5% 3%;
+        border-radius: 30px;
+        max-height: 380px;
+        color: var(--whiteColor);
+    }
+    .header-title{
+        font-size: 48px;
+        letter-spacing: 1.5;
+    }
+    .header-desc{
+        font-size: 14px;
+        letter-spacing: 1;
+        text-align: center;
+    }
+    .faq{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        padding: 3%;
+    }
+    .faq-name{
+        flex: 0.5;
+        padding: 2% 2% 0 0;
+    }
+    .faq-header{
+        padding: 5% 0 0 0 ;
+        font-size: 40px;
+        letter-spacing: 2;
+    }
+    .faq-img{
+        width: 100%;
+       max-width: 400px;
+    }
+    .faq-box{
+        flex: 1;
+        min-width: 320px;
+        padding: 2% 0 4% 4%;
+        border-left: 2px solid var(--primaryColor);
+    }
+    .faq-wrapper{
+        width: 100%;
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--blackColor);
+    }
+    .faq-title{
+        display: block;
+        position: relative;
+        width: 100%;
+        letter-spacing: 1.2;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--primaryColor);
+    }
+    /*arrow setting*/
+    .faq-title::after{
+        width: 10px;
+        height: 10px;
+        content: "";
+        float: right;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        transform: rotate(135deg);
+        transition: 0.4s ease-in-out;
+    }
+    .faq-details{
+        line-height: 1.5;
+        letter-spacing: 1;
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.3s ease-in-out;
+        font-size: 16px;
+    }
+    .faq-trigger {
+        display: none;
+    }
+    .faq-trigger:checked + .faq-title + .faq-details{
+        max-height: 300px;
+    }
+    .faq-trigger:checked + .faq-title::after{
+        transform: rotate(-45deg);
+        transition: 0.4s ease-in-out;
+    }
+    .btn{
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        letter-spacing: 1;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        margin-top: 50px;
+        position: absolute;
+    }
+</style>
+    
+<body>
+    <div class="header">
+        <h1 class="header-title">FAQ</h1>
+        <p class="header-desc"><b>Frequently Asked Questions section!</b><br> Here, you'll find answers to some of the most commonly asked questions about my services, processes, and web development in general.</p>
+    </div>
+    <div class="faq">
+        <div class="faq-name">
+            <h1 class="faq-header">Have<br>Question?</h1>
+            <img src="https://i.ibb.co/dQzs1Zg/Screenshot-2024-11-13-233137.png" alt="image" class="faq-img">
+        </div>
+            <div class="faq-box">
+                <div class="faq-wrapper">
+                    <input type="checkbox" class="faq-trigger" id="faq-trigger-1">
+                    <label class="faq-title" for="faq-trigger-1">What types of services does your website provide?</label>
+                    <div class="faq-details"><p>My website provides a curated collection of entertainment resources for users to explore and enjoy including links to movies, web series anime and more. i am trying to create an easy and user-friendly experience for discovering great content."
+                        If you are unsure about the legality of your offerings it’s essential to consult with a legal expert to avoid any potential issues. Let me know if you need help in defining a website in more detail and more in-depth terms.</p>
+                    </div>
+                </div>
+        
+                <div class="faq-wrapper">
+                    <input type="checkbox" class="faq-trigger" id="faq-trigger-2">
+                    <label class="faq-title" for="faq-trigger-2">Are the services listed on your website really free?</label>
+                    <div class="faq-details">
+                        <p> Yes, all the services we provide links to are free to use. However, please be aware that some platforms may offer premium features or subscriptions for additional content.</p>
+                    </div>
+                </div>
+                <div class="faq-wrapper">
+                    <input type="checkbox" class="faq-trigger" id="faq-trigger-3">
+                    <label class="faq-title" for="faq-trigger-3">How do I use the links on your website?</label>
+                    <div class="faq-details">
+                        <p>Simply click on the link for the service you wish to use, and you will be redirected to the corresponding website. From there, you can browse and enjoy the service!</p>
+                    </div>
+                </div>
+                <div class="faq-wrapper">
+                    <input type="checkbox" class="faq-trigger" id="faq-trigger-4">
+                    <label class="faq-title" for="faq-trigger-4">Is it safe to use the websites listed on your site?</label>
+                    <div class="faq-details">
+                        <p> I'm strive to provide links to reputable and safe websites. However, I recommend that you always use caution and ensure your device has up-to-date security software when browsing online.</p>
+                    </div>
+                </div>
+                <div class="faq-wrapper">
+                    <input type="checkbox" class="faq-trigger" id="faq-trigger-5">
+                    <label class="faq-title" for="faq-trigger-5"> How often do you update the list of services?</label>
+                    <div class="faq-details">
+                        <p> I'm regularly review and update our list to ensure that i provide the most current and relevant services available. Check back often for new additions!</p>
+                    </div>
+                </div>
+                <div class="faq-wrapper">
+                    <input type="checkbox" class="faq-trigger" id="faq-trigger-6">
+                    <label class="faq-title" for="faq-trigger-6">What should I do if a link is broken or not working??</label>
+                    <div class="faq-details">
+                        <p> If you encounter a broken link, please let us know through our contact page so we can fix it promptly. Your feedback helps us maintain a high-quality resource!</p>
+                    </div>
+                </div>
+                <div class="faq-wrapper">
+                    <input type="checkbox" class="faq-trigger" id="faq-trigger-7">
+                    <label class="faq-title" for="faq-trigger-7">How can I contact you for further questions?</label>
+                    <div class="faq-details">
+                        <p>You can reach us through our contact page, where you can fill out a form with your inquiry. My aim to respond to all questions as quickly as possible.</p>
+                    </div>
+                </div>
+                <a href="index.html" class="btn">Back</a>
+    </div>
+</body>
+</html>
